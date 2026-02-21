@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brand Detail</title>
+
+  <style>
+    *{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial;
+background:#050505;
+color:white;
+text-align:center;
+overflow-x:hidden;
+}
+
+/* animated background */
+
+.bg{
+position:fixed;
+width:100%;
+height:100%;
+background:linear-gradient(120deg,#000000,#111,#ff0000,#000);
+background-size:400% 400%;
+animation:bgMove 10s infinite alternate;
+z-index:-1;
+}
+
+@keyframes bgMove{
+0%{background-position:left;}
+100%{background-position:right;}
+}
+
+/* header */
+
+header{
+padding:40px;
+}
+
+h1{
+font-size:48px;
+letter-spacing:3px;
+text-shadow:0 0 20px red;
+}
+
+/* car card */
+
+.car-section{
+display:flex;
+justify-content:center;
+margin-top:40px;
+}
+
+.car-card{
+background:rgba(0,0,0,0.6);
+padding:30px;
+border-radius:20px;
+box-shadow:0 0 40px rgba(255,0,0,0.5);
+transition:0.5s;
+}
+
+.car-card:hover{
+transform:translateY(-10px) scale(1.03);
+}
+
+.car-card img{
+width:500px;
+filter:drop-shadow(0 30px 25px black);
+transition:1s;
+}
+
+/* buttons */
+
+button{
+margin-top:20px;
+padding:12px 30px;
+border:none;
+border-radius:10px;
+background:linear-gradient(45deg,#ff0000,#ff7300);
+color:white;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+box-shadow:0 0 20px red;
+}
+
+/* controls */
+
+.controls{
+margin-top:40px;
+display:flex;
+justify-content:center;
+gap:20px;
+}
+  </style>
+
+  
+</head>
+<body>
+  <!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Dark Sport Car</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="bg"></div>
+
+<header>
+<h1>SPORT CAR SHOWCASE</h1>
+<p>Dark Power Machine</p>
+</header>
+
+<section class="car-section">
+
+<div class="car-card">
+<img id="car" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70">
+<h2>Night Racer</h2>
+<button onclick="boost()">BOOST MODE</button>
+</div>
+
+</section>
+
+<div class="controls">
+<button onclick="changeColor()">Change Neon</button>
+<button onclick="floatCar()">Float Mode</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
+  <script>
+    const car = document.getElementById("car")
+
+function boost(){
+
+car.style.transform = "scale(1.15)"
+car.style.filter = "drop-shadow(0 0 40px red)"
+
+setTimeout(()=>{
+car.style.transform = "scale(1)"
+car.style.filter = "drop-shadow(0 30px 25px black)"
+},1200)
+
+}
+
+function changeColor(){
+
+const colors = [
+"linear-gradient(120deg,#000,#ff0000,#000)",
+"linear-gradient(120deg,#000,#00e5ff,#000)",
+"linear-gradient(120deg,#000,#ff00c8,#000)"
+]
+
+const bg = document.querySelector(".bg")
+
+const random = Math.floor(Math.random()*colors.length)
+
+bg.style.background = colors[random]
+
+}
+
+let floating = false
+
+function floatCar(){
+
+if(!floating){
+car.style.animation = "float 2s ease-in-out infinite"
+floating = true
+}else{
+car.style.animation = "none"
+floating = false
+}
+
+}
+
+const style = document.createElement("style")
+style.innerHTML = `
+@keyframes float{
+0%{transform:translateY(0)}
+50%{transform:translateY(-25px)}
+100%{transform:translateY(0)}
+}
+`
+document.head.appendChild(style)
+  </script>
+</body>
+</html>
